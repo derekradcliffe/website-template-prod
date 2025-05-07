@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -17,6 +17,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import MyModal from "@/components/ui/modal";
 import emailjs from '@emailjs/browser';
 
 export const Route = createFileRoute("/contact")({
@@ -37,6 +38,8 @@ const formSchema = z.object({
 });
 
 function Contact() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -60,7 +63,7 @@ function Contact() {
         )
         .then(
           () => {
-            // alert("This is going to look better soon, but thank you for your email!");
+            setIsModalOpen(true);
 
             form.reset();
             console.log("SUCCESS!");
@@ -71,6 +74,10 @@ function Contact() {
         );
     }
   }
+
+  function closeModal() {
+    setIsModalOpen(false);
+  };
 
   return (
     <div className="flex flex-col justify-center items-center">
@@ -145,6 +152,10 @@ function Contact() {
           <Button className="cursor-pointer hover:bg-white hover:text-black hover: border border-black" type="submit">Submit</Button>
         </form>
       </Form>
+
+      {isModalOpen && (
+        <MyModal onClose={closeModal} />
+      )}
     </div>
   );
 }

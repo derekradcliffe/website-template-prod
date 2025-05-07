@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { Link } from '@tanstack/react-router';
 import {
   Carousel,
   CarouselContent,
@@ -31,7 +32,7 @@ function App() {
         <CarouselContent>
             <CarouselItem className="h-[100vh] w-[100%]">
               <img src="https://placehold.co/1920x1080" alt="Image 1" className="w-full h-full object-cover" />
-            <Button className="md:absolute relative left-1/2 transform -translate-x-1/2 md:bottom-0 bottom-20 bg-black text-white hover:bg-gray-500 cursor-pointer md:mb-10 md:mt-0 mt-5 mb-0 md:w-[10%] w-[30%]">Button 1</Button>
+            <Button className="md:absolute relative left-1/2 transform -translate-x-1/2 md:bottom-0 bottom-20 bg-black text-white hover:bg-gray-500 cursor-pointer md:mb-10 md:mt-0 mt-5 mb-0 md:w-[10%] w-[30%]"><Link to="/contact">Button 1</Link></Button>
             </CarouselItem>
           <CarouselItem className="h-[100vh] w-[100%]">
             <img src="https://placehold.co/1920x1080" alt="Image 2" className="w-full h-full object-cover" />
