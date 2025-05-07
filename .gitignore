@@ -7,4 +7,3 @@ dist-ssr
 .env.*.local
 dist/
 .vscode
-logo.svg
